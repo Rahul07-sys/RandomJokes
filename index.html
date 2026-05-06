@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Jokes</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(94, 255, 0);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-wrap: wrap;
+        }
+
+        .wrapper {
+            margin: 5px;
+            width: 80vmin;
+            padding: 50px 40px;
+            background-color: rgba(0, 0, 0, 0.751);
+            border-radius: 5px;
+            box-shadow: 20px 20px 40px rgba(97, 63, 0, 4);
+        }
+
+        span {
+            display: block;
+            text-align: center;
+            font-size: 100px;
+        }
+
+        p {
+            font-size: 20px;
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+            word-wrap: break-word;
+            line-height: 35px;
+            margin: 30px 0;
+        }
+
+        button {
+            display: block;
+            margin: 2px auto;
+            padding: 10px 12px;
+            background-color: rgb(23, 122, 244);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <span>&#128514;</span>
+            <p id="joke">
+                Please Turn On Internet and press button to See Jokes
+            </p>
+            <button id="btn">Random Jokes </button>
+        </div>
+        <!-- <div class="wrapper">
+            <span>&#128514;</span>
+            <p id="joke1">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quam soluta ullam corporis, quibusdam
+                ex.
+                Nihil voluptatum rerum quaerat
+            </p>
+            <button id="btn1">Random Quotes </button>
+        </div> -->
+    </div>
+    <script>
+        const jokeContainer = document.getElementById('joke');
+        const btn = document.getElementById('btn');
+        const url = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
+        let getJoke = () => {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.setup) {
+                        jokeContainer.innerHTML = `${data.setup} <br> <br> ${data.delivery}`;
+                    } else {
+                        jokeContainer.innerHTML = data.joke;
+                    }
+                });
+        }
+        btn.addEventListener('click', getJoke);
+
+        getJoke();
+    </script>
+    <script>
+        const jokeContainer1 = document.getElementById('joke1');
+        const btn1 = document.getElementById('btn1');
+        const url1 = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
+        let getJoke1 = () => {
+            fetch(url1)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.setup) {
+                        jokeContainer1.innerHTML = `${data.setup} <br> <br> ${data.delivery}`;
+                    } else {
+                        jokeContainer1.innerHTML = data.joke;
+                    }
+                });
+        }
+        btn1.addEventListener('click', getJoke1);
+
+        getJoke1();
+    </script>
+</body>
+
+</html>
